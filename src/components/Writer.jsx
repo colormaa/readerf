@@ -30,7 +30,7 @@ const Writer=()=>{
         setLoading(true)
         setTempWord([])
         setSelectedWord(word)
-        axios.get(`http://localhost:3500/getWord?word=${word}`)
+        axios.get(`https://readerb.vercel.app/getWord?word=${word}`)
         .then(re=>{
             console.log(re );
             setTempWord(re.data.result)
