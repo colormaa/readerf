@@ -6,7 +6,7 @@ import axios from 'axios';
 const Word = ({word, onLoad=()=>{}})=>{
     const [showTranslateBtn, setShowTranslateBtn]=useState(false)
     return(
-        <div className='relative h-13 group'>
+        <div className='relative h-[80px] group'>
             {showTranslateBtn&&<div className='absolute top-0 left-0' >click</div>}
             <div onClick={()=>{
                 onLoad(word)
@@ -16,7 +16,7 @@ const Word = ({word, onLoad=()=>{}})=>{
                     onMouseLeave={()=>{
                         setShowTranslateBtn(false)
                     }}
-            className="text-xl mt-6 leader-3 h-7 link-underline link-underline-black transform transition group-hover:text-pink-500">{word}</div>
+            className="text-xl mt-4 leader-3 h-[50px] link-underline link-underline-black transform transition group-hover:text-pink-500">{word}</div>
 
         </div>
         
@@ -47,7 +47,7 @@ const Writer=()=>{
         
         <form onSubmit={()=>{
             setEnableEdit(false)
-        }} className="flex flex-col  flex-1 relative mx-auto px-5 pb-5 w-[90%] md:w-[700px] bg-pink-400 my-2 md:mb-20 drop-shadow-2xl rounded-lg border-1  ">
+        }} className="flex flex-col  flex-1 relative mx-auto px-5 pb-5 w-[90%] md:w-[700px] bg-pink-400 my-2 md:mb-20 drop-shadow-2xl rounded-lg border-1  max-h-[90%] ">
             {loading&&<div style={{zIndex:1000}} className='fixed top-0 bottom-0 left-0 right-0 bg-green-100 opacity-40  z-100'>{loading}</div>}
             <div className='flex flex-row py-3 items-start'>
                 <div onClick={()=>{
@@ -67,9 +67,7 @@ const Writer=()=>{
                         Please Edit text. Once you completed text click 'Start Reading'
                     </div>
                 }
-                
             </div>
-            
             {
                 enableEdit||text.length==0?
 
@@ -83,31 +81,12 @@ const Writer=()=>{
                         tt=tt.substring(1);
                     }
                 }}></textarea>
-                // <CKEditor
-                //     editor={ ClassicEditor }
-                //     data={text}
-                //     onReady={ editor => {
-                //         // You can store the "editor" and use when it is needed.
-                //         console.log( 'Editor is ready to use!', editor );
-                //     } }
-                //     onChange={ ( event, editor ) => {
-                //         const data = editor.getData();
-                //         console.log( { event, editor, data } );
-                //         setText(data);
-                //     } }
-                //     onBlur={ ( event, editor ) => {
-                //         console.log( 'Blur.', editor );
-                //     } }
-                //     onFocus={ ( event, editor ) => {
-                //         console.log( 'Focus.', editor );
-                //     } }
-                // />
-
+                
                 :
-                <div className='p-3 bg-white rounded-lg flex-1 flex flex-row flex-wrap overflow-y-auto '>
+                <div className='p-3 bg-white rounded-lg flex-1 flex flex-row justify-start flex-wrap overflow-y-auto '>
                     {text.split(" ").map((mm, mid)=>{
                         return(
-                            <div  key = {mid} className=" flex flex-row">
+                            <div  key = {mid} className=" flex flex-row  ">
                                 {mid>0? <span>&nbsp; </span>:<span></span>}
                                 <Word onLoad={(word)=>{getWord(word)}} word={mm} key={mid}/>
                             </div>
